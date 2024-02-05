@@ -1,7 +1,7 @@
 import { Button, Paper, Table , TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
 
-export const Usertable = ({rows}) => {
+export const Usertable = ({rows,se}) => {
 
     return(
 
@@ -23,7 +23,7 @@ export const Usertable = ({rows}) => {
                         <TableCell >
                             <Button
                                 sx={{margin:'0px 10px'}}
-                                onClick={() => {}}
+                                onClick={() => {selectedUser({ id:row.id, name: row.name})}}
                             >
                                 Update
                             </Button>
