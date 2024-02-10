@@ -1,7 +1,8 @@
+//Usertable.js
 import { Button, Paper, Table , TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
 
-export const Usertable = ({rows,se}) => {
+export const Usertable = ({rows,selectedUser,deleteUser}) => {
 
     return(
 
@@ -23,13 +24,13 @@ export const Usertable = ({rows,se}) => {
                         <TableCell >
                             <Button
                                 sx={{margin:'0px 10px'}}
-                                onClick={() => {selectedUser({ id:row.id, name: row.name})}}
+                                onClick={() => selectedUser({ id:row.id, name: row.name})}
                             >
                                 Update
                             </Button>
                             <Button
                                 sx={{margin:'0px 10px'}}
-                                onClick={() => {}}
+                                onClick={() => deleteUser({id: row.id})}
                             >
                                 Delete
                             </Button>

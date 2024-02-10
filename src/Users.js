@@ -1,3 +1,4 @@
+//User.js
 import React, { useEffect } from 'react'
 import { Userform } from './Userform'
 import { Usertable } from './Usertable';
@@ -10,7 +11,7 @@ export const Users = () => {
   const [users, setUsers] = useState([]);
   const [submitted, setSubmitted] =useState(false);
   const [selectedUser,setSelectedUser] =useState({});
-  const [isEdit,setIsEdt] = useState(false);
+  const [isEdit,setIsEdit] = useState(false);
 
   useEffect(() =>{
     getUsers();
@@ -68,10 +69,26 @@ export const Users = () => {
         
   }
 
+  const deleteUser= (data) =>{
+   
+
+    Axios.post('http://localhost:3010/api/deleteuser',data)
+      .then(response =>{
+        getUsers();
+        
+      })
+      .catch(error => {
+        console.error("Axios error:",error);
+        });
+      
+        
+  }
+
   return (
     <Box sx={{width:'calc(100%-100px)', margin:'auto'} }>
       <Userform
       addUser={addUser}
+      updateUser={updateUser}
       submitted={submitted}
       data={selectedUser}
       isEdit={isEdit}
@@ -82,7 +99,8 @@ export const Users = () => {
         setSelectedUser(data);
         setIsEdit(true);
     }}
+    deleteUser={data => window.confirm('Are you sure?') && deleteUser(data)}
         />
     </Box>
-  )
-};
+  );
+}
